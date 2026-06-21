@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Football Universe — Top 5 European Leagues</title>
+<meta name="description" content="Explore the Premier League, La Liga, Bundesliga, Serie A and Ligue 1 — clubs, players, stats and news in one place.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== LOADING SCREEN ===== -->
+<div id="loader" class="loader">
+  <div class="loader-pitch">
+    <div class="loader-ball"><i class="fa-solid fa-futbol"></i></div>
+  </div>
+  <p class="loader-text">KICKING OFF<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+</div>
+
+<!-- ===== PARTICLE CANVAS (hero) ===== -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark"><i class="fa-solid fa-futbol"></i></span>
+      <span class="brand-text">Football<strong>Universe</strong></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#leagues" class="nav-link">Leagues</a>
+      <a href="#teams" class="nav-link">Teams</a>
+      <a href="#stats" class="nav-link">Stats</a>
+      <a href="#players" class="nav-link">Players</a>
+      <a href="#news" class="nav-link">News</a>
+      <a href="#quiz" class="nav-link">Quiz</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle light and dark mode">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <button class="icon-btn hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-pitch" aria-hidden="true">
+    <div class="pitch-circle"></div>
+    <div class="pitch-halfway"></div>
+    <div class="pitch-spot"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow"><i class="fa-solid fa-circle" style="font-size:6px;"></i> Season 2025/26 — Live coverage</p>
+    <h1 class="hero-title">FOOTBALL<span>UNIVERSE</span></h1>
+    <p class="hero-subtitle">Every club. Every kit colour. Every Saturday 3pm kick-off.
+      The five biggest leagues in world football, gathered on one pitch.</p>
+    <div class="hero-actions">
+      <a href="#leagues" class="btn btn-primary"><i class="fa-solid fa-shield-halved"></i> Explore Leagues</a>
+      <a href="#teams" class="btn btn-ghost"><i class="fa-solid fa-magnifying-glass"></i> Find a Club</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">5</span><span class="label">Leagues</span></div>
+      <div class="hero-stat"><span class="num">30</span><span class="label">Clubs</span></div>
+      <div class="hero-stat"><span class="num">5</span><span class="label">Countries</span></div>
+    </div>
+  </div>
+
+  <a href="#leagues" class="scroll-cue" aria-label="Scroll down">
+    <span>Scroll</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </a>
+</section>
+
+<main>
+
+<!-- ===== LEAGUES ===== -->
+<section class="section" id="leagues">
+  <div class="section-inner">
+    <p class="section-eyebrow">Top 5</p>
+    <h2 class="section-title">The Continent's Best Leagues</h2>
+    <p class="section-desc">From Anfield to the Bernabéu, five footballing cultures, one obsession.</p>
+
+    <div class="league-grid" id="leagueGrid"></div>
+  </div>
+</section>
+
+<!-- ===== TEAMS EXPLORER ===== -->
+<section class="section section-alt" id="teams">
+  <div class="section-inner">
+    <p class="section-eyebrow">Squad Book</p>
+    <h2 class="section-title">Teams Explorer</h2>
+    <p class="section-desc">Pick a league, scout the badge, find your club.</p>
+
+    <div class="teams-toolbar">
+      <div class="league-tabs" id="leagueTabs"></div>
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="teamSearch" placeholder="Search any club, e.g. Arsenal…">
+        <button id="clearSearch" class="clear-btn" aria-label="Clear search" hidden><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+
+    <div class="team-grid" id="teamGrid"></div>
+    <p class="no-results" id="noResults" hidden>No clubs match your search. Try a different name.</p>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="section" id="stats">
+  <div class="section-inner">
+    <p class="section-eyebrow">By the Numbers</p>
+    <h2 class="section-title">League Statistics</h2>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <i class="fa-solid fa-trophy"></i>
+        <span class="stat-num" data-target="5">0</span>
+        <span class="stat-label">Total Leagues</span>
+      </div>
+      <div class="stat-card">
+        <i class="fa-solid fa-people-group"></i>
+        <span class="stat-num" data-target="30">0</span>
+        <span class="stat-label">Teams Displayed</span>
+      </div>
+      <div class="stat-card">
+        <i class="fa-solid fa-earth-europe"></i>
+        <span class="stat-num" data-target="5">0</span>
+        <span class="stat-label">Countries</span>
+      </div>
+      <div class="stat-card stat-card-text">
+        <i class="fa-solid fa-star"></i>
+        <span class="stat-text">Real Madrid</span>
+        <span class="stat-label">Most Champions League Titles (15)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PLAYERS ===== -->
+<section class="section section-alt" id="players">
+  <div class="section-inner">
+    <p class="section-eyebrow">The Headliners</p>
+    <h2 class="section-title">Featured Players</h2>
+    <p class="section-desc">The talents currently bending the game's gravity.</p>
+
+    <div class="player-grid" id="playerGrid"></div>
+  </div>
+</section>
+
+<!-- ===== NEWS ===== -->
+<section class="section" id="news">
+  <div class="section-inner">
+    <p class="section-eyebrow">Press Box</p>
+    <h2 class="section-title">Latest Football News</h2>
+
+    <div class="news-grid" id="newsGrid"></div>
+  </div>
+</section>
+
+<!-- ===== QUIZ ===== -->
+<section class="section section-alt" id="quiz">
+  <div class="section-inner">
+    <p class="section-eyebrow">Test Yourself</p>
+    <h2 class="section-title">Football Quiz</h2>
+    <p class="section-desc">Six questions. No assists.</p>
+
+    <div class="quiz-card" id="quizCard">
+      <!-- Start screen -->
+      <div class="quiz-start" id="quizStart">
+        <i class="fa-solid fa-futbol quiz-icon"></i>
+        <h3>Ready to kick off?</h3>
+        <p>Six quick questions about clubs, players and history.</p>
+        <button class="btn btn-primary" id="quizStartBtn">Start Quiz</button>
+      </div>
+
+      <!-- Question screen -->
+      <div class="quiz-question" id="quizQuestion" hidden>
+        <div class="quiz-progress">
+          <div class="quiz-progress-bar" id="quizProgressBar"></div>
+        </div>
+        <p class="quiz-meta">Question <span id="quizCurrent">1</span> of <span id="quizTotal">6</span></p>
+        <h3 id="quizQuestionText"></h3>
+        <div class="quiz-options" id="quizOptions"></div>
+      </div>
+
+      <!-- Result screen -->
+      <div class="quiz-result" id="quizResult" hidden>
+        <i class="fa-solid fa-trophy quiz-icon"></i>
+        <h3>Final Score</h3>
+        <p class="quiz-score"><span id="quizScore">0</span> / 6</p>
+        <p id="quizFeedback" class="quiz-feedback"></p>
+        <button class="btn btn-primary" id="quizRetryBtn">Play Again</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#home" class="brand">
+          <span class="brand-mark"><i class="fa-solid fa-futbol"></i></span>
+          <span class="brand-text">Football<strong>Universe</strong></span>
+        </a>
+        <p>One pitch for the world's biggest leagues. Built for the love of the game.</p>
+        <div class="social-icons">
+          <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="#leagues">Leagues</a>
+        <a href="#teams">Teams</a>
+        <a href="#players">Players</a>
+        <a href="#news">News</a>
+        <a href="#quiz">Quiz</a>
+      </div>
+
+      <div class="footer-links">
+        <h4>Leagues</h4>
+        <a href="#teams" data-league="premier-league">Premier League</a>
+        <a href="#teams" data-league="la-liga">La Liga</a>
+        <a href="#teams" data-league="bundesliga">Bundesliga</a>
+        <a href="#teams" data-league="serie-a">Serie A</a>
+        <a href="#teams" data-league="ligue-1">Ligue 1</a>
+      </div>
+
+      <div class="footer-newsletter">
+        <h4>Matchday Newsletter</h4>
+        <p>Kick-off times, transfer gossip, zero spam.</p>
+        <form id="newsletterForm" class="newsletter-form">
+          <input type="email" placeholder="you@email.com" required aria-label="Email address">
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+        <p class="newsletter-msg" id="newsletterMsg" hidden>You're on the list. See you matchday.</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> Football Universe. A portfolio project — not affiliated with any league or club.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
